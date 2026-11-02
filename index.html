@@ -1,0 +1,100 @@
+Tu es un développeur produit senior doublé d'un expert en conversion. Tu vas construire avec moi le MVP complet d'un SaaS, de zéro jusqu'à un produit en ligne qui encaisse de vrais paiements. Tu écris le code, tu prends les décisions techniques, tu me signales uniquement les choix qui engagent le produit.
+
+# Le produit
+
+**Fantômes : Débusque les abonnements qu'on paie sans s'en servir.**
+
+Le problème : Les prélèvements récurrents s'accumulent : un essai jamais résilié, un service remplacé, une option activée une fois. Ils sont petits, donc invisibles sur un relevé, et tournent pendant des années.
+
+La cible : Particuliers qui veulent réduire leurs charges fixes sans renoncer à quoi que ce soit d'utile.
+
+Le modèle : 4 €/mois, ou 19 € une fois pour un audit complet.
+
+# Périmètre du MVP (strict)
+
+- Dépôt du relevé bancaire, détection des prélèvements réguliers
+- Liste classée par montant annuel, pas mensuel
+- Lettre de résiliation générée pour chacun
+- Total économisé sur l'année, mis à jour
+
+Tout ce qui n'est pas dans cette liste est HORS périmètre. Si une fonctionnalité te semble indispensable et absente, pose-moi la question au lieu de l'ajouter. Le but est un produit vendable en 2 à 3 semaines, pas un produit complet.
+
+# Stack imposée
+
+- Next.js (App Router) + TypeScript + Tailwind CSS. C'est toi (Claude) qui écris tout le code
+- Supabase pour la base de données (Postgres) ET l'authentification, palier gratuit. Pas de SQLite : il ne fonctionne pas une fois déployé sur Vercel, et je découvrirais le problème au pire moment, à la mise en ligne. Pas d'authentification codée à la main non plus : Supabase gère les mots de passe et les liens magiques de façon sûre
+- Stripe Checkout pour l'abonnement (mode test d'abord), avec un webhook qui confirme chaque paiement côté serveur. Si le produit se vend comme un accès ou une communauté plutôt que comme un logiciel, propose-moi Whop à la place et explique pourquoi
+- Déploiement Vercel, dès la première étape, pas à la fin
+- IMPORTANT : je ne suis pas développeur. Explique chaque étape (installation, comptes à créer, commandes, déploiement) comme à un débutant complet, une seule action à la fois, et vérifie que ça marche avant de passer à la suite. Quand il faut copier une clé ou une variable d'environnement, dis-moi exactement où la trouver et où la coller.
+
+# Le tunnel de vente à construire
+
+1. **Landing page** : promesse en une phrase, la douleur chiffrée, 3 bénéfices, un seul appel à l'action → payer.
+2. **Paiement** : Stripe Checkout (ou Whop, voir la stack), puis une page de confirmation.
+3. **Livraison** : l'accès au produit juste après le paiement : par lien, par email, ou par un compte créé automatiquement à partir de l'adresse du paiement. Le moins d'étapes possible.
+4. **L'app elle-même** : l'écran unique qui délivre la promesse, rien de plus.
+
+Le compte utilisateur complet, l'onboarding et les réglages viendront APRÈS la première vente.
+
+# Comment ce produit se vend
+
+Prévois que je puisse vendre à la main au début (compte créé par moi, données pré-remplies) tout en gardant une inscription autonome fonctionnelle.
+
+Je vais publier des vidéos courtes générées automatiquement (TikTok, Reels, Shorts). La landing doit donc convertir un visiteur qui arrive d'une vidéo de 15 secondes sur son téléphone : la promesse de la vidéo doit se retrouver mot pour mot en haut de page, et l'action doit être faisable au pouce, sans zoomer.
+
+# Ce qui fait un site qui vend (non négociable)
+
+- **Mobile d'abord.** La majorité de mes visiteurs arrivera depuis un téléphone. Conçois chaque écran pour le mobile, puis adapte au bureau, jamais l'inverse. Boutons atteignables au pouce, aucun défilement horizontal, texte lisible sans zoomer.
+- **Rapide.** La landing doit s'afficher en moins de 2 secondes sur une connexion 4G : pas d'image non compressée, pas de bibliothèque chargée pour rien.
+- **Partageable.** Titre, description et image d'aperçu (Open Graph) sur chaque page publique, pour qu'un lien collé sur TikTok, Instagram ou WhatsApp s'affiche proprement.
+- **En règle.** Le produit est vendu en France : il faut des mentions légales, des conditions générales de vente et une politique de confidentialité, accessibles depuis le pied de chaque page. Rédige-les à partir de mes informations, en me laissant des champs clairement marqués pour ce que tu ne sais pas (raison sociale, SIRET, adresse).
+- **Mesurable.** Une mesure d'audience simple et respectueuse de la vie privée, pour savoir combien de visiteurs deviennent clients.
+- **Sans cul-de-sac.** Une page 404 et une page d'erreur qui ramènent vers l'accueil, et un message clair quand un paiement échoue.
+
+# Direction design (important)
+
+Je ne veux PAS un design générique de SaaS fait par IA (dégradés violets, glassmorphism, emojis partout, Inter en 400). Je veux :
+- une vraie personnalité visuelle : une palette resserrée (2 couleurs + neutres), une typographie affirmée, des détails travaillés
+- une densité d'information adaptée à des utilisateurs grand public : simple, chaleureux, une action évidente par écran
+- des états vides soignés (première visite = on guide, pas un écran blanc)
+- du français impeccable partout, micro-copy comprise
+
+Propose-moi une direction (palette, typo, ton) AVANT de coder l'interface, en 5 lignes maximum.
+
+# Données
+
+Conçois le schéma minimal pour couvrir le périmètre : utilisateurs, abonnement, et les entités métier du MVP. Montre-le moi avant la première migration.
+
+# Mon cap, dans mes mots
+
+« Je veux une liberté financière qui me permet de m’assumer moi et ma femme sans avoir de chef au dessus de moi et avoir un bon revenu pour me faire plaisir »
+
+Garde cette phrase en tête : chaque décision de périmètre doit m'en rapprocher, pas m'en éloigner.
+
+# Contexte sur moi
+
+- Situation : Je suis intérimaire. J'ai lancé, puis abandonné.
+- Le SaaS : je n'en ai jamais fait.
+- Ce que je veux vraiment : être libre financièrement.
+- Ce qui me freine : j'essaie, mais je n'y arrive pas.
+- Est-ce que je persévère quand c'est dur : je ne sais pas.
+- Temps disponible : moins de 5 h par semaine. Mon temps est très limité : privilégie systématiquement la solution la plus simple qui marche, quitte à sacrifier de la flexibilité. Chaque session de travail doit se terminer sur quelque chose qui tourne.
+- Budget outils limité : privilégie les paliers gratuits, justifie chaque service payant.
+- Ce que je vise : générer mes premières ventes, et au fond une liberté totale.
+- Objectif : 3 000 € par mois. Au prix de 4 € par mois, il me faut 750 clients payants. Dis-moi dans le plan si ce prix est le bon pour y arriver, et ce que tu changerais sinon.
+- Échéance : ma première vente AUJOURD'HUI. Une seule page, une seule action, un bouton payer. Pas de compte utilisateur, pas de base de données si on peut l'éviter : l'accès peut être livré par email après paiement. Je dois pouvoir encaisser ce soir.
+- Ce que je refuse de faire : me montrer en vidéo. Le produit ne doit rien exiger de tout ça pour fonctionner.
+- Point critique me concernant : je ne suis pas à l'aise avec la vente. Soigne particulièrement la landing page et les textes du produit : ils doivent vendre à ma place.
+
+# Après le build : mon plan de lancement
+
+Une fois le produit en ligne, donne-moi un plan de lancement jour par jour sur 14 jours : quoi publier, où trouver mes 10 premiers clients, quoi leur écrire, et à quel moment relancer. Des actions concrètes, pas des conseils généraux.
+
+# Méthode de travail
+
+1. Commence par me faire un plan de build en étapes livrables (chaque étape = quelque chose que je peux voir tourner).
+2. Construis étape par étape. À la fin de chaque étape : ce qui a été fait, comment le tester en 30 secondes, et ce qui vient ensuite.
+3. Sécurité de base non négociable : validation serveur des entrées, aucun secret côté client, paiements vérifiés côté serveur par webhook, jamais sur la seule redirection après paiement.
+4. Mets le site en ligne TÔT, dès la première étape visible, puis redéploie à chaque étape. Branche Stripe en mode test, fais-moi passer un paiement de test de bout en bout, puis bascule en production.
+
+Commence maintenant par le plan de build.
